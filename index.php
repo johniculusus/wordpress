@@ -11,14 +11,7 @@
  *
  * @var bool
  */
-define('WP_USE_THEMES', false);
+define('WP_USE_THEMES', true);
 
 /** Loads the WordPress Environment and Template */
-require('./wp-blog-header.php');
-
-//JAFD this starts the learning
-//http://codex.wordpress.org/Stepping_Into_Templates
-?>
-
-<?php get_header(); ?>
-<?php get_footer(); ?>
+require( dirname( __FILE__ ) . '/wp-blog-header.php' );

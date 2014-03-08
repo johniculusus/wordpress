@@ -34,25 +34,25 @@
 
 /** The name of the database for WordPress */
 
-define('DB_NAME', 'b14_13745667_wordpress');
+define('DB_NAME', 'wordpress');
 
 
 
 /** MySQL database username */
 
-define('DB_USER', 'b14_13745667');
+define('DB_USER', 'root');
 
 
 
 /** MySQL database password */
 
-define('DB_PASSWORD', 'juventus');
+define('DB_PASSWORD', '');
 
 
 
 /** MySQL hostname */
 
-define('DB_HOST', 'sql304.byetcluster.com');
+define('DB_HOST', 'localhost');
 
 
 

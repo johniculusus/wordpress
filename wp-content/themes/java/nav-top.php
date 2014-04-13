@@ -8,7 +8,7 @@
 				</a>
 				<div id="site-navigation" class="nav-collapse collapse">
 					<ul class="nav">
-					    <li <?php if(get_the_ID() == '1'){ echo('class="current_page_item"');} ?> >
+					    <li <?php if(is_home()){ echo('class="current_page_item"');} ?> >
                             <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
                         </li>
 
@@ -17,10 +17,11 @@
                             foreach ( $pages as $page ) {
                                 $children = wp_list_pages('title_li=&child_of='.$page->ID.'&echo=0');
                                 $isParent = ($page->post_parent);
+                                $isCurrentSubPage = ($post->post_parent == $page->ID);
                                 $isCurrentPage = ($page->ID == get_the_ID());
 
                                 if ( empty($isParent)) {
-                                $option = '<li class="' . (($children) ? 'dropdown ' : '') . (($post->post_parent == $page->ID || $isCurrentPage) ? 'current_page_item' : '') . '">';
+                                $option = '<li class="' . (($children) ? 'dropdown ' : '') . (($isCurrentSubPage || $isCurrentPage) ? 'current_page_item' : '') . '">';
 
                                 $option .= '<a href="' . get_page_link( $page->ID ) . '"' . (($children) ?  ' class="dropdown-toggle" data-toggle="dropdown"' : '') .  '>';
                                 $option .= $page->post_title;

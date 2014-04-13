@@ -3,29 +3,41 @@
 	<div class="navbar navbar-fixed-top navbar-fixed-top-colored">
 		<div class="navbar-inner">
 			<div class="container">
-				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="brand" href="#">Project name</a>
-				<div class="nav-collapse collapse">
+				<a class="brand" rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
+				    <?php bloginfo( 'name' ); ?>
+				</a>
+				<div id="site-navigation" class="nav-collapse collapse">
 					<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li class="nav-header">Nav header</li>
-							<li><a href="#">Separated link</a></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul>
-					</li>
+					    <li <?php if(get_the_ID() == '1'){ echo('class="current_page_item"');} ?> >
+                            <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
+                        </li>
+
+                        <?php
+                            $pages = get_pages();
+                            foreach ( $pages as $page ) {
+                                $children = wp_list_pages('title_li=&child_of='.$page->ID.'&echo=0');
+                                $isParent = ($page->post_parent);
+                                $isCurrentPage = ($page->ID == get_the_ID());
+
+                                if ( empty($isParent)) {
+                                $option = '<li class="' . (($children) ? 'dropdown ' : '') . (($post->post_parent == $page->ID || $isCurrentPage) ? 'current_page_item' : '') . '">';
+
+                                $option .= '<a href="' . get_page_link( $page->ID ) . '"' . (($children) ?  ' class="dropdown-toggle" data-toggle="dropdown"' : '') .  '>';
+                                $option .= $page->post_title;
+                                    if ($children) {
+                                        $option .= ' <b class="caret"></b>';
+                                    }
+                                $option .= '</a>';
+                                    if ($children) {
+                                        $option .= '<ul class="dropdown-menu">';
+                                        $option .= $children;
+                                        $option .= '</ul>';
+                                    }
+                                $option .= '</li>';
+                                echo $option;
+                                }
+                            }
+                        ?>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>

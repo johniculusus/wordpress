@@ -5,8 +5,8 @@
  * Displays all of the <head> section and everything up till <div id="main">
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage java
+ * @since java 1.0
  */
 ?>
 
@@ -34,7 +34,7 @@
 
 		// Add a page number if necessary:
 		if ( $paged >= 2 || $page >= 2 )
-			echo ' | ' . sprintf( __( 'Page %s', 'twentyeleven' ), max( $paged, $page ) );
+			echo ' | ' . sprintf( __( 'Page %s', 'java' ), max( $paged, $page ) );
 
 		?>
 	</title>
@@ -42,6 +42,7 @@
 	<link href="<?php echo get_template_directory_uri();?>/css/bootstrap.css" type="text/css" rel="stylesheet">
 	<link href="<?php echo get_template_directory_uri();?>/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
 	<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+
 	
 	<link href="<?php echo get_template_directory_uri();?>/css/general.css" type="text/css" rel="stylesheet">
 	
